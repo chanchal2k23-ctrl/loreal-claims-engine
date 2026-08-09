@@ -1,0 +1,565 @@
+/* App.css */
+
+/* --- Reset & Global Base --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #1a1a1a;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- App Container & Layout --- */
+#root > div {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* --- Top Header / Nav --- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
+  padding: 0.875rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Brand Link */
+header > a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+header > a span:first-child {
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  color: #d4af37; /* L'Oréal Gold */
+}
+
+header > a span:last-child {
+  font-size: 0.875rem;
+  color: #a0a0a0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Navigation Links */
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #cccccc;
+  font-size: 0.938rem;
+  font-weight: 500;
+  padding: 0.5rem 0.25rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+nav a:hover {
+  color: #ffffff;
+}
+
+nav a.active {
+  color: #ffffff;
+  border-bottom-color: #d4af37;
+}
+
+/* --- Dashboard Header --- */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-title h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.375rem;
+}
+
+.muted {
+  color: #6b7280;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 600px;
+}
+
+/* --- Primary Action Button --- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  color: #ffffff !important;
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background-color: #222222;
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+/* --- Stat Cards Grid --- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat {
+  background: #ffffff;
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.stat-label {
+  font-size: 0.813rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+.stat-pending .stat-value { color: #d97706; }
+.stat-ok .stat-value { color: #059669; }
+
+/* --- Claims Cards Grid --- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.claim-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.claim-card:hover {
+  border-color: #d4af37;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.claim-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.claim-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.pill {
+  background-color: #f3f4f6;
+  color: #374151;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.claim-quote {
+  font-style: italic;
+  color: #4b5563;
+  margin: 0.5rem 0 1.25rem 0;
+  flex: 1;
+}
+
+.claim-card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 0.75rem;
+}
+
+/* --- Badges & Chips --- */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+}
+
+.badge-substantiated { background-color: #ecfdf5; color: #065f46; }
+.badge-insufficient { background-color: #fef2f2; color: #991b1b; }
+.badge-submitted { background-color: #f3f4f6; color: #4b5563; }
+
+.score-chip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 1.25rem;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  color: #6b7280;
+  font-size: 0.813rem;
+  margin-top: auto;
+}
+
+/* --- Form Layout & Container --- */
+.narrow {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.form-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* --- Form Fields & Grid Rows --- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.field span {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 500px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Input, Select & Textarea Controls */
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: #111827;
+  background-color: #ffffff;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.field small {
+  font-size: 0.775rem;
+  color: #6b7280;
+}
+
+/* --- Page Header Layout --- */
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Aligns title and button vertically */
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-head h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+/* --- Fill Example / Ghost Button CSS --- */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 0.875rem;
+  border-radius: 6px;
+  font-size: 0.813rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.btn-ghost:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+  border-color: #9ca3af;
+}
+
+.btn-ghost:active {
+  background-color: #e5e7eb;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+/* Disabled state */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --- Error Box --- */
+.error-box {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 0.875rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+/* --- Claim Detail View --- */
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  color: #111827;
+}
+
+.detail-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.detail-head h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+.claim-quote.big {
+  font-size: 1.125rem;
+  color: #374151;
+  font-style: italic;
+  margin-bottom: 0.75rem;
+}
+
+.meta-row {
+  display: flex;
+  gap: 0.5rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* Panels */
+.panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.panel h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #111827;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  background-color: #f9fafb;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #f3f4f6;
+  color: #1f2937;
+}
+
+/* Assessment Summary */
+/* --- Basic Assessment View --- */
+.assessment-simple {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.assessment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 0.875rem;
+}
+
+.score-badge {
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.assessment-section h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.reasoning {
+  font-size: 0.95rem;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+.assessment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+/* Criteria List */
+.criteria {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.criterion {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  background: #f9fafb;
+}
+
+.criterion-icon {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.criterion-pass { color: #059669; }
+.criterion-fail { color: #dc2626; }
+.criterion-partial { color: #d97706; }
+
+.criterion-body {
+  flex: 1;
+}
+
+.criterion-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.criterion-body p {
+  font-size: 0.813rem;
+  color: #4b5563;
+}
+
+/* Form Action Alignment */
+.form-actions.between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
